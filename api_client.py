@@ -27,3 +27,25 @@ class ApiClient:
             url=url,
             headers=headers
         )
+
+
+# class ApiClient: (industry practice)
+
+#     def request(
+#         self,
+#         method,
+#         endpoint,
+#         headers=None,
+#         payload=None,
+#         params=None
+#     ):
+
+#         response = requests.request(
+#             method=method,
+#             url=endpoint,
+#             headers=headers,
+#             json=payload,
+#             params=params
+#         )
+
+#         return response
