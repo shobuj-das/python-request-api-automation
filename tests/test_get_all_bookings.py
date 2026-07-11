@@ -1,6 +1,6 @@
 
 from config.end_points import EndPoint
-from api_client import ApiClient
+from config.api_client import ApiClient
 from config.http_methods import HttpMethod
 
 client = ApiClient()

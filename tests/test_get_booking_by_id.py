@@ -1,6 +1,6 @@
 from config.end_points import EndPoint
 from config.http_methods import HttpMethod
-from api_client import ApiClient
+from config.api_client import ApiClient
 
 client = ApiClient()
 
@@ -15,4 +15,3 @@ def test_get_booking_by_id():
     assert response.status_code == 200
     print(response.json())
 
-    

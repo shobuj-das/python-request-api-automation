@@ -2,15 +2,15 @@ import pytest
 
 from config.end_points import EndPoint
 from config.http_methods import HttpMethod
-from api_client import ApiClient
+# from config.api_client import ApiClient
 from utils.json_loader import load_json
 from utils.booking_assertion_helper import BookingAssertion
 
-client = ApiClient()
+# client = ApiClient()
 booking_data = load_json("testdata/booking/create_booking.json")
 
 @pytest.mark.parametrize("payload", booking_data)
-def test_create_booking(payload):
+def test_create_booking(client, payload):
 
     response = client.request(
         method=HttpMethod.POST,

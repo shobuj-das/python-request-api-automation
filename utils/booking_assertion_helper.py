@@ -8,3 +8,9 @@ class BookingAssertion:
         assert booking["lastname"] == expected["lastname"]
         assert booking["totalprice"] == expected["totalprice"]
         assert booking["depositpaid"] == expected["depositpaid"]
+
+    @staticmethod
+    def verify_newly_booked(id):
+        pass
+
+    
