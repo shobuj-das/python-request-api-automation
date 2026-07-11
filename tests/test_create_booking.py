@@ -4,6 +4,7 @@ from config.end_points import EndPoint
 from config.http_methods import HttpMethod
 from api_client import ApiClient
 from utils.json_loader import load_json
+from utils.booking_assertion_helper import BookingAssertion
 
 client = ApiClient()
 booking_data = load_json("testdata/booking/create_booking.json")
@@ -27,11 +28,13 @@ def test_create_booking(payload):
     # assert body["booking"]["bookingdates"] == payload["bookingdates"]
     # assert body["booking"]["additionalneeds"] == payload["additionalneeds"]
 
-    body = response.json()
-    booking = body["booking"]
-    assert booking["firstname"] == payload["firstname"]
-    assert booking["lastname"] == payload["lastname"]
-    assert booking["totalprice"] == payload["totalprice"]
-    assert booking["depositpaid"] == payload["depositpaid"]
-    assert booking["bookingdates"] == payload["bookingdates"]
-    assert booking["additionalneeds"] == payload["additionalneeds"]
+    # body = response.json()
+    # booking = body["booking"]
+    # assert booking["firstname"] == payload["firstname"]
+    # assert booking["lastname"] == payload["lastname"]
+    # assert booking["totalprice"] == payload["totalprice"]
+    # assert booking["depositpaid"] == payload["depositpaid"]
+    # assert booking["bookingdates"] == payload["bookingdates"]
+    # assert booking["additionalneeds"] == payload["additionalneeds"]
+
+    BookingAssertion.verify_booking_response(response=response, expected=payload)
