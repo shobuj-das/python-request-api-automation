@@ -12,9 +12,16 @@ def test_update_booking(client, auth_token):
         "Cookie" : f"token={auth_token}"
     }
 
-    # update_payload = 
+    update_payload = load_json("testdata/booking/update_booking_payload.json")
     booking_id = 3
-    client.request(
+    response = client.request(
         method=HttpMethod.PUT,
-        endpoint=f"{EndPoint.UPDATE_BOOKING}/{booking_id}"
+        endpoint=f"{EndPoint.UPDATE_BOOKING}/{booking_id}",
+        headers=headers,
+        payload=update_payload
     )
+
+    BookingAssertion.verify_updated_booking_response(response, update_payload)
+    print(response.json())
+
+

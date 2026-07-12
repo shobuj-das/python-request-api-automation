@@ -1,0 +1,11 @@
+{
+    "firstname": "KKKHHH",
+    "lastname": "BBBCCCC",
+    "totalprice": 1111,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2025-01-10",
+      "checkout": "2025-01-15"
+    },
+    "additionalneeds": "Lunch2222"
+  }

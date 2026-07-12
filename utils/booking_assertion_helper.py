@@ -10,7 +10,11 @@ class BookingAssertion:
         assert booking["depositpaid"] == expected["depositpaid"]
 
     @staticmethod
-    def verify_newly_booked(id):
-        pass
+    def verify_updated_booking_response(response, expected):
+        booking = response.json()
 
+        assert booking["firstname"] == expected["firstname"]
+        assert booking["lastname"] == expected["lastname"]
+        assert booking["totalprice"] == expected["totalprice"]
+        assert booking["depositpaid"] == expected["depositpaid"]
     
