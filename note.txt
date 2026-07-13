@@ -1,1 +1,5 @@
 python -m pytest tests/test_get_all_bookings.py -v -s 
+
+
+# Scenario
+python -m pytest tests/scenarios/test_create.py -v -s

@@ -3,8 +3,11 @@ class BookingAssertion:
     def verify_booking_response(response, expected):
         assert response.status_code == 200
 
-        body = response.json()
-        booking = body["booking"]
+        resposne_body = response.json()
+        if "booking" in resposne_body:
+            booking = resposne_body["booking"]
+        else:
+            booking = resposne_body
 
         assert booking["firstname"] == expected["firstname"]
         assert booking["lastname"] == expected["lastname"]
