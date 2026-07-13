@@ -23,5 +23,3 @@ def test_update_booking(client, auth_token):
 
     BookingAssertion.verify_updated_booking_response(response, update_payload)
     print(response.json())
-
-
