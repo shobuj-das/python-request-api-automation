@@ -6,7 +6,7 @@ from utils.json_loader import load_json
 from utils.booking_assertion_helper import BookingAssertion
 
 booking_data = load_json("testdata/booking/create_booking.json")
-
+@pytest.mark.smoke
 @pytest.mark.parametrize("payload", booking_data)
 def test_create_booking(client, payload):
 

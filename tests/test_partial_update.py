@@ -6,7 +6,7 @@ from utils.json_loader import load_json
 from utils.booking_assertion_helper import BookingAssertion
 
 partial_update_payloads = load_json("testdata/booking/partial_update_payloads.json")
-
+@pytest.mark.smoke
 @pytest.mark.parametrize("payload", partial_update_payloads)
 def test_partial_update(client, auth_token, payload):
     headers = {

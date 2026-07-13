@@ -5,6 +5,7 @@ from config.http_methods import HttpMethod
 from utils.json_loader import load_json
 from utils.booking_assertion_helper import BookingAssertion
 
+@pytest.mark.smoke
 def test_delete_booking(auth_token,client):
     id = 9
     headers = {

@@ -5,6 +5,7 @@ from config.http_methods import HttpMethod
 from utils.json_loader import load_json
 from utils.booking_assertion_helper import BookingAssertion
 
+@pytest.mark.smoke
 def test_update_booking(client, auth_token):
     headers = {
         'Content-Type': 'application/json',

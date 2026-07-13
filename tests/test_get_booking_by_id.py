@@ -1,7 +1,8 @@
+import pytest
 from config.end_points import EndPoint
 from config.http_methods import HttpMethod
 
-
+@pytest.mark.smoke
 def test_get_booking_by_id(client):
     booking_id = 3
 
