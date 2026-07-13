@@ -46,7 +46,7 @@ logs/
 
 allure-results/
 allure-report/
-reports
+reports/
 # ------------------------------
 
 # IDE / Editor Files
