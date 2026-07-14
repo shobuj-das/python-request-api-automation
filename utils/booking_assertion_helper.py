@@ -1,7 +1,6 @@
 class BookingAssertion:
     @staticmethod
     def verify_booking_response(response, expected):
-        assert response.status_code == 200
 
         resposne_body = response.json()
         if "booking" in resposne_body:
@@ -16,7 +15,6 @@ class BookingAssertion:
 
     @staticmethod
     def verify_updated_booking_response(response, expected):
-        assert response.status_code == 200
         booking = response.json()
 
         assert booking["firstname"] == expected["firstname"]

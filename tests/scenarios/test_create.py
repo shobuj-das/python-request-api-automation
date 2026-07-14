@@ -7,6 +7,7 @@ from utils.booking_assertion_helper import BookingAssertion
 
 booking_payloads = load_json("testdata/booking/create_booking.json")
 
+@pytest.mark.sanity
 @pytest.mark.parametrize("payload", booking_payloads)
 def test_create_booking(client, payload):
     
