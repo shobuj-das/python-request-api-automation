@@ -33,7 +33,8 @@ jobs:
           mkdir -p reports
 
           pytest \
-          -m smoke \
+          -m "smoke or sanity" \
+          -v \
           --html=reports/report.html \
           --self-contained-html \
           --alluredir=allure-results
