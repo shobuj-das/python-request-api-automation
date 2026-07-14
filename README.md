@@ -1,76 +1,86 @@
-# Python Request API Automation Framework
+# 🚀 Python Request API Automation Framework
 
-A scalable, production-ready REST API automation framework built with **Python**, **Pytest**, and **Requests**.
+![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)
+![Pytest](https://img.shields.io/badge/Pytest-9.x-green.svg)
+![Requests](https://img.shields.io/badge/Requests-HTTP-orange.svg)
+![Allure](https://img.shields.io/badge/Allure-Report-red.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-The framework follows industry best practices and is designed to support **microservice-based applications** by keeping APIs organized, reusable, and maintainable.
+A scalable, production-ready REST API Automation Framework built using **Python**, **Pytest**, and **Requests**.
+
+The framework is designed following industry best practices and can easily scale for **microservice-based applications** such as Ride Sharing, Courier, Banking, E-commerce, etc.
 
 ---
 
-# Features
+# ✨ Features
 
 - REST API Automation
 - Generic API Client
 - Environment Configuration
 - Centralized Endpoint Management
 - Data Driven Testing (DDT)
-- JSON Test Data
 - Pytest Fixtures
-- Custom Assertion Helpers
+- JSON Test Data
 - Logging
-- HTML Reporting (pytest-html)
-- Allure Reporting
-- Smoke / Sanity / Regression Test Suites
-- Easy to Extend for Microservices
+- HTML Report
+- Allure Report
+- Smoke / Sanity / Regression Suite
+- Assertion Helpers
+- Reusable Architecture
+- Easy to Extend
 
 ---
 
-# Tech Stack
+# 🛠 Technology Stack
 
 | Tool | Purpose |
 |------|----------|
 | Python | Programming Language |
-| Pytest | Test Framework |
-| Requests | HTTP Client |
-| Pytest HTML | HTML Report |
-| Allure | Advanced Test Reporting |
-| Logging | Request & Response Logging |
+| Pytest | Test Runner |
+| Requests | REST API Client |
+| Pytest HTML | HTML Reporting |
+| Allure | Advanced Reporting |
+| Logging | API Logging |
 | JSON | Test Data |
 | Git | Version Control |
 
 ---
 
-# Project Structure
+# 📂 Project Structure
 
 ```text
-python-request-api-automation/
+python-request-api-automation
 │
-├── config/
-│   ├── end_points.py
-│   ├── http_methods.py
+├── config
+│   ├── __init__.py
 │   ├── settings.py
-│   └── __init__.py
+│   ├── end_points.py
+│   └── http_methods.py
 │
-├── logs/
+├── logs
 │   └── api.log
 │
-├── reports/
+├── reports
 │
-├── testdata/
-│   └── booking/
+├── allure-results
+│
+├── allure-report
+│
+├── testdata
+│   └── booking
 │       ├── auth_payload.json
 │       ├── create_booking.json
 │       └── update_booking_payload.json
 │
-├── tests/
-│   ├── test_get_all_bookings.py
-│   ├── test_get_booking_by_id.py
-│   ├── test_create_booking.py
-│   └── test_update_booking.py
+├── tests
+│   ├── booking
+│   ├── auth
+│   └── scenarios
 │
-├── utils/
+├── utils
+│   ├── logger.py
 │   ├── json_loader.py
-│   ├── booking_assertion_helper.py
-│   └── logger.py
+│   └── booking_assertion_helper.py
 │
 ├── api_client.py
 ├── conftest.py
@@ -81,12 +91,12 @@ python-request-api-automation/
 
 ---
 
-# Installation
+# ⚙️ Installation
 
 ## Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/<your_username>/python-request-api-automation.git
 
 cd python-request-api-automation
 ```
@@ -121,9 +131,7 @@ pip install -r requirements.txt
 
 ---
 
-# Python Packages
-
-Install manually if required.
+# 📦 Required Python Packages
 
 ```bash
 pip install pytest
@@ -135,19 +143,46 @@ pip install python-dotenv
 
 ---
 
-# Install Allure Command Line
+# 📦 requirements.txt
 
-> **Note**
->
-> `allure-pytest` only generates the result files.
->
-> To generate the HTML report, install the **Allure Command Line**.
+```text
+requests
+pytest
+pytest-html
+allure-pytest
+python-dotenv
+```
 
-Official Download:
+Install all dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# ☕ Java Requirement
+
+Allure requires Java.
+
+Verify Java installation
+
+```bash
+java -version
+```
+
+---
+
+# 📊 Install Allure Command Line
+
+> Installing `allure-pytest` is **not enough**.  
+> You also need the **Allure Command Line**.
+
+Official Releases
 
 https://github.com/allure-framework/allure2/releases
 
-After installation verify:
+Verify Installation
 
 ```bash
 allure --version
@@ -155,9 +190,9 @@ allure --version
 
 ---
 
-# Configuration
+# ⚙ Configuration
 
-Base URL is stored in
+Base URL is stored inside
 
 ```text
 config/settings.py
@@ -171,38 +206,47 @@ BASE_URL = "https://restful-booker.herokuapp.com"
 
 ---
 
-# Endpoint Management
+# 🌐 Endpoint Management
 
-Endpoints are maintained in one place.
+All endpoints are maintained in one place.
 
 ```python
 class EndPoint:
 
-    AUTH = "/auth"
-    BOOKING = "/booking"
+    AUTH="/auth"
+
+    BOOKING="/booking"
 ```
 
-This prevents hardcoding URLs throughout the framework.
+Advantages
+
+- Easy Maintenance
+- No Hardcoded URLs
+- Reusable
 
 ---
 
-# HTTP Methods
+# 🌐 HTTP Methods
 
 ```python
 class HttpMethod:
 
-    GET = "GET"
-    POST = "POST"
-    PUT = "PUT"
-    PATCH = "PATCH"
-    DELETE = "DELETE"
+    GET="GET"
+
+    POST="POST"
+
+    PUT="PUT"
+
+    PATCH="PATCH"
+
+    DELETE="DELETE"
 ```
 
 ---
 
-# API Client
+# 🚀 Generic API Client
 
-The framework uses a single generic request method.
+Framework uses one generic request function.
 
 ```python
 response = client.request(
@@ -211,34 +255,34 @@ response = client.request(
 )
 ```
 
-Advantages
+Benefits
 
-- No duplicate code
-- Easy maintenance
-- Reusable across all services
+- Less Code
+- Reusable
+- Easy Maintenance
 
 ---
 
-# Data Driven Testing (DDT)
+# 📁 Data Driven Testing (DDT)
 
-Test data is stored in JSON files.
+Test data is stored in JSON.
 
 Example
 
 ```json
 [
-    {
-        "firstname":"Jim",
-        "lastname":"Brown"
-    },
-    {
-        "firstname":"John",
-        "lastname":"Doe"
-    }
+  {
+    "firstname":"Jim",
+    "lastname":"Brown"
+  },
+  {
+    "firstname":"John",
+    "lastname":"Doe"
+  }
 ]
 ```
 
-Loaded using
+Load JSON
 
 ```python
 from utils.json_loader import load_json
@@ -248,37 +292,39 @@ payload = load_json("testdata/booking/create_booking.json")
 
 ---
 
-# Fixtures
+# 🧩 Pytest Fixtures
 
-Shared objects are managed using Pytest Fixtures.
+Reusable objects are managed using fixtures.
 
 Example
 
 ```python
 @pytest.fixture(scope="session")
 def client():
+
     return ApiClient()
 ```
 
-Authentication token
+Authentication
 
 ```python
 @pytest.fixture(scope="session")
-def auth_token(client):
+def auth_token():
+
     ...
 ```
 
 Benefits
 
-- No duplicate login
-- Cleaner tests
-- Reusable objects
+- Cleaner Tests
+- Reusable Objects
+- No Duplicate Login
 
 ---
 
-# Logging
+# 📝 Logging
 
-Every API request and response is automatically logged.
+Every API request is automatically logged.
 
 Location
 
@@ -288,48 +334,119 @@ logs/api.log
 
 Logged Information
 
-- Request URL
-- Method
+- HTTP Method
+- URL
 - Headers
+- Query Parameters
 - Payload
-- Response Status
+- Status Code
 - Response Body
+
+Example
+
+```text
+REQUEST METHOD : POST
+
+URL : https://....
+
+HEADERS : ...
+
+PAYLOAD : ...
+
+STATUS : 200
+
+RESPONSE : ...
+```
 
 ---
 
-# Test Suites
+# 🧪 Test Suites
 
-Pytest Markers
+Pytest markers are used to organize execution.
+
+Example
 
 ```python
 @pytest.mark.smoke
-
-@pytest.mark.sanity
-
-@pytest.mark.regression
-
 @pytest.mark.booking
+def test_create_booking():
 ```
 
-Run Smoke Suite
+```python
+@pytest.mark.sanity
+@pytest.mark.booking
+def test_update_booking():
+```
+
+```python
+@pytest.mark.regression
+@pytest.mark.booking
+def test_delete_booking():
+```
+
+---
+
+# ▶ Running Tests
+
+## Run All Tests
+
+```bash
+pytest
+```
+
+---
+
+## Run Specific File
+
+```bash
+pytest tests/test_create_booking.py
+```
+
+---
+
+## Verbose Mode
+
+```bash
+pytest -v
+```
+
+---
+
+## Show Print Statements
+
+```bash
+pytest -v -s
+```
+
+---
+
+# 🏷 Running Test Suites
+
+## Smoke
 
 ```bash
 pytest -m smoke
 ```
 
-Run Sanity Suite
+---
+
+## Sanity
 
 ```bash
 pytest -m sanity
 ```
 
-Run Regression Suite
+---
+
+## Regression
 
 ```bash
 pytest -m regression
 ```
 
-Run Booking Tests
+---
+
+## Booking Service
 
 ```bash
 pytest -m booking
@@ -337,72 +454,146 @@ pytest -m booking
 
 ---
 
-# Running Tests
-
-Run all tests
+## Smoke OR Sanity
 
 ```bash
-pytest
-```
-
-Verbose mode
-
-```bash
-pytest -v
-```
-
-With console output
-
-```bash
-pytest -v -s
-```
-
-Run single test
-
-```bash
-pytest tests/test_create_booking.py -v -s
+pytest -m "smoke or sanity"
 ```
 
 ---
 
-# HTML Report
-
-Generate report
+## Smoke AND Booking
 
 ```bash
-pytest --html=reports/report.html --self-contained-html
+pytest -m "smoke and booking"
 ```
 
-Timestamp Example
+---
 
-Linux
+## Exclude Regression
 
 ```bash
-timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+pytest -m "not regression"
+```
 
+---
+
+# 📊 HTML Report
+
+Generate HTML Report
+
+```bash
 pytest \
---html="reports/report_$timestamp.html" \
---self-contained-html
-```
-
-Windows PowerShell
-
-```powershell
-$timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
-
-pytest `
---html="reports/report_$timestamp.html" `
+--html=reports/report.html \
 --self-contained-html
 ```
 
 ---
 
-# Allure Report
+## HTML Report + Smoke Suite
 
-Generate Result
+```bash
+pytest \
+-m smoke \
+--html=reports/report.html \
+--self-contained-html
+```
+
+---
+
+## HTML Report + Sanity Suite
+
+```bash
+pytest \
+-m sanity \
+--html=reports/report.html \
+--self-contained-html
+```
+
+---
+
+# 🚀 Allure Report
+
+## Generate Result Files
 
 ```bash
 pytest --alluredir=allure-results
+```
+
+---
+
+## Smoke Suite
+
+```bash
+pytest \
+-m smoke \
+--alluredir=allure-results
+```
+
+---
+
+## Sanity Suite
+
+```bash
+pytest \
+-m sanity \
+--alluredir=allure-results
+```
+
+---
+
+## Smoke OR Sanity
+
+```bash
+pytest \
+-m "smoke or sanity" \
+--alluredir=allure-results
+```
+
+---
+
+## Booking Smoke Tests
+
+```bash
+pytest \
+-m "smoke and booking" \
+--alluredir=allure-results
+```
+
+---
+
+## Generate Allure Report
+
+```bash
+allure generate allure-results -o allure-report --clean
+```
+
+---
+
+## Open Report
+
+```bash
+allure open allure-report
+```
+
+---
+
+## Generate & Open Automatically
+
+```bash
+allure serve allure-results
+```
+
+---
+
+# 📋 Complete Workflow
+
+Run Smoke Suite
+
+```bash
+pytest \
+-m smoke \
+--alluredir=allure-results
 ```
 
 Generate Report
@@ -417,7 +608,7 @@ Open Report
 allure open allure-report
 ```
 
-Or
+Or simply
 
 ```bash
 allure serve allure-results
@@ -425,89 +616,109 @@ allure serve allure-results
 
 ---
 
-# Assertion Helper
+# 🧪 Assertions
 
 Assertions are centralized.
 
 Example
 
 ```python
-BookingAssertion.verify_booking(response, payload)
+BookingAssertion.verify_booking(
+    response,
+    payload
+)
 ```
 
 Benefits
 
-- Less duplicate assertions
-- Better maintainability
+- Reusable
+- Less Duplicate Code
+- Cleaner Tests
 
 ---
 
-# Current APIs Covered
+# 📚 APIs Covered
 
 - Authentication
 - Get All Bookings
-- Get Booking by ID
+- Get Booking By ID
 - Create Booking
 - Update Booking
 
 ---
 
-# Framework Design
+# 🏗 Framework Architecture
 
 ```text
-Test
-    │
-    ▼
-Fixture
-    │
-    ▼
-API Client
-    │
-    ▼
-Requests Library
-    │
-    ▼
-REST API
+                 Test Case
+                     │
+                     ▼
+               Pytest Fixture
+                     │
+                     ▼
+                API Client
+                     │
+                     ▼
+                 Requests
+                     │
+                     ▼
+                  REST API
 ```
 
 ---
 
-# Future Improvements
+# 🚀 Future Improvements
 
-- Booking Service Layer
+- Service Layer
 - Base Service
 - Token Manager
-- Schema Validation
-- Response Time Validation
+- JSON Schema Validation
 - Retry Mechanism
 - Custom Exceptions
+- Response Time Validation
 - Parallel Execution
-- CI/CD Integration
-- Docker Support
-- Jenkins Integration
+- Multi Environment Support
+- Docker
+- Jenkins
 - GitHub Actions
-- Slack Notifications
+- Slack Notification
+- Report History
 
 ---
 
-# Best Practices Followed
+# ✅ Best Practices Followed
 
+- Generic API Client
 - Single Responsibility Principle
-- Reusable API Client
 - Centralized Endpoints
-- External Test Data
+- Environment Configuration
 - Data Driven Testing
 - Pytest Fixtures
 - Logging
-- Reporting
+- HTML Report
+- Allure Report
 - Marker Based Execution
+- Assertion Helpers
 
 ---
 
-# Author
+# 👨‍💻 Author
 
 **Shobuj Das**
 
 QA Automation Engineer
 
-Python | API Automation | Pytest | Requests | REST API | Performance Testing
+- Python
+- API Automation
+- REST API
+- Pytest
+- Requests
+- Performance Testing
+
+---
+
+# ⭐ Support
+
+If you found this project useful, please consider giving it a ⭐ on GitHub.
+
+Happy Testing! 🚀
