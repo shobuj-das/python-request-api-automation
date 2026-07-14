@@ -38,16 +38,16 @@ jobs:
           --self-contained-html \
           --alluredir=allure-results
 
-        - name: Upload HTML report
-          if: always()
-          uses: actions/upload-aritfact@v4
-          with:
-            name: html-report
-            path: reports/report.html
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-aritfact@v4
+        with:
+          name: html-report
+          path: reports/report.html
 
-        - name: Upload Allure report
-          if: always()
-          uses: actions/upload-aritfact@v4
-          with:
-            name: allure-results
-            path: allure-results
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-aritfact@v4
+        with:
+          name: allure-results
+          path: allure-results
