@@ -30,4 +30,24 @@ jobs:
 
       - name: Run Smoke Tests
         run: |
-          pytest -m smoke -v
+          mkdir -p reports
+
+          pytest \
+          -m smoke \
+          --html=reports/report.html \
+          --self-contained-html \
+          --alluredir=allure-results
+
+        - name: Upload HTML report
+          if: always()
+          uses: actions/upload-aritfact@v4
+          with:
+            name: html-report
+            path: reports/report.html
+
+        - name: Upload Allure report
+          if: always()
+          uses: actions/upload-aritfact@v4
+          with:
+            name: allure-results
+            path: allure-results
