@@ -5,22 +5,25 @@ from config.http_methods import HttpMethod
 from utils.json_loader import load_json
 from utils.booking_assertion_helper import BookingAssertion
 
+update_booking_payloads = load_json("testdata/booking/update_booking_payload.json")
+
 @pytest.mark.smoke
-def test_update_booking(client, auth_token):
+@pytest.mark.parametrize("update_payloads", update_booking_payloads)
+def test_update_booking(client, auth_token,update_payloads):
     headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         "Cookie" : f"token={auth_token}"
     }
 
-    update_payload = load_json("testdata/booking/update_booking_payload.json")
+    
     booking_id = 3
     response = client.request(
         method=HttpMethod.PUT,
         endpoint=f"{EndPoint.UPDATE_BOOKING}/{booking_id}",
         headers=headers,
-        payload=update_payload
+        payload=update_payloads
     )
 
-    BookingAssertion.verify_updated_booking_response(response, update_payload)
+    BookingAssertion.verify_updated_booking_response(response, update_payloads)
     print(response.json())
