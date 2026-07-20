@@ -5,23 +5,20 @@ on:
     branches:
       - main
 
-  permissions:
-    contents:read
-    pages: write
-    id-token: write
-    
-  concurrency:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
   group: pages
   cancel-in-progress: true
 
-  
-  jobs:
+jobs:
   api-test:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -38,25 +35,25 @@ on:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Smoke Tests
+      - name: Run Smoke and Sanity Tests
         run: |
           mkdir -p reports
 
           pytest \
-          -m "smoke or sanity" \
-          -v \
-          --html=reports/report.html \
-          --self-contained-html \
-          --alluredir=allure-results
+            -m "smoke or sanity" \
+            -v \
+            --html=reports/report.html \
+            --self-contained-html \
+            --alluredir=allure-results
 
-      - name: Upload HTML report
+      - name: Upload HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: html-report
           path: reports/report.html
 
-      - name: Upload Allure report
+      - name: Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
