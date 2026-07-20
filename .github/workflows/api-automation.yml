@@ -60,7 +60,7 @@ jobs:
           name: allure-results
           path: allure-results
 
-    deploy-report:
+  deploy-report:
     needs: api-test
     runs-on: ubuntu-latest
     if: always()
