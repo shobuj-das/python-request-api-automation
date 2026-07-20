@@ -59,3 +59,47 @@ jobs:
         with:
           name: allure-results
           path: allure-results
+
+    deploy-report:
+    needs: api-test
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Download Allure Results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+
+      - name: Install Allure CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jre wget
+
+          wget https://github.com/allure-framework/allure2/releases/download/2.44.0/allure-2.44.0.tgz
+          tar -zxvf allure-2.44.0.tgz
+          sudo mv allure-2.44.0 /opt/allure
+          echo "/opt/allure/bin" >> $GITHUB_PATH
+
+      - name: Generate Allure Report
+        run: |
+          /opt/allure/bin/allure generate allure-results -o allure-report --clean
+
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: allure-report
+
+  deploy-pages:
+    needs: deploy-report
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
